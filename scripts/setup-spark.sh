@@ -5,6 +5,8 @@ function installLocalSpark {
 	echo "install spark from local file"
 	FILE=/vagrant/resources/$SPARK_ARCHIVE
 	tar -xzf $FILE -C /usr/local
+	#mkdir /usr/local/spark
+	#tar -xzf $FILE -C /usr/local/spark --strip-components=1
 }
 
 function installRemoteSpark {
@@ -34,7 +36,15 @@ function installSpark {
 	else
 		installRemoteSpark
 	fi
-	ln -s /usr/local/$SPARK_VERSION-bin-hadoop2.4 /usr/local/spark
+	ln -s /usr/local/$SPARK_VERSION-bin-hadoop2.6 /usr/local/spark
+}
+
+function enableDynamicResourceAllocation {
+	if [ "$SPARK_DYNAMIC" = true ]; then 
+		cat /vagrant/resources/spark/spark-defaults-dynamic.conf >> /usr/local/spark/conf/spark-defaults.conf
+		mkdir -p /usr/local/hadoop/share/hadoop/yarn/lib/
+		cp /usr/local/spark/lib/${SPARK_VERSION}-yarn-shuffle.jar /usr/local/hadoop/share/hadoop/yarn/lib/
+	fi
 }
 
 echo "setup spark"
@@ -42,3 +52,4 @@ echo "setup spark"
 installSpark
 setupSpark
 setupEnvVars
+enableDynamicResourceAllocation

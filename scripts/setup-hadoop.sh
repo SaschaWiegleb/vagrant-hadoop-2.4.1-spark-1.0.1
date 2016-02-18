@@ -24,6 +24,12 @@ function setupHadoop {
 	
 	echo "copying over hadoop configuration files"
 	cp -f $HADOOP_RES_DIR/* $HADOOP_CONF
+
+	if [ "$SPARK_DYNAMIC" = true ]; then 
+		cat $HADOOP_CONF/yarn-site-dynamic.xml >> $HADOOP_CONF/yarn-site.xml; 
+	else 
+		echo "</configuration>" >> $HADOOP_CONF/yarn-site.xml; 
+	fi
 }
 
 function setupEnvVars {

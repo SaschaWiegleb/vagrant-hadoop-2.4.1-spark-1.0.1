@@ -31,11 +31,11 @@ function setupHosts {
 	for i in $(seq 1 $TOTAL_NODES)
 	do 
 		if [ $i -lt 10 ]; then
-			entry="10.211.55.10${i} node${i}"
+			entry="${IP_SUBNET_ADRESS}.10${i} node${i}"
 		elif [ $ i < 100]; then
-			entry="10.211.55.1${i} node${i}"
+			entry="${IP_SUBNET_ADRESS}.1${i} node${i}"
 		else
-			entry="10.211.55.${i} node${i}"
+			entry="${IP_SUBNET_ADRESS}.${i} node${i}"
 		fi
 		echo "adding ${entry}"
 		echo "${entry}" >> /etc/hosts

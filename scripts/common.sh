@@ -1,18 +1,24 @@
 #!/bin/bash
 
+#IP SETTINGS (first host is .101)
+IP_SUBNET_ADRESS=192.168.0
+#centOS
+TIMEZONE=Europe/Berlin
 #java
-JAVA_ARCHIVE=jdk-7u51-linux-x64.gz
+JAVA_ARCHIVE=jdk-7u79-linux-x64.gz
+JAVA_VERSION=1.7.0_79
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF=$HADOOP_PREFIX/etc/hadoop
-HADOOP_VERSION=hadoop-2.6.0
+HADOOP_VERSION=hadoop-2.7.2
 HADOOP_ARCHIVE=$HADOOP_VERSION.tar.gz
-HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-2.6.0/hadoop-2.6.0.tar.gz
+HADOOP_MIRROR_DOWNLOAD=https://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/hadoop-2.7.2.tar.gz
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 #spark
-SPARK_VERSION=spark-1.3.0
-SPARK_ARCHIVE=$SPARK_VERSION-bin-hadoop2.4.tgz
-SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-1.3.0/spark-1.3.0-bin-hadoop2.4.tgz
+SPARK_VERSION=spark-1.6.0
+SPARK_DYNAMIC=false
+SPARK_ARCHIVE=$SPARK_VERSION-bin-hadoop2.6.tgz
+SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dyn/closer.lua/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz
 SPARK_RES_DIR=/vagrant/resources/spark
 SPARK_CONF_DIR=/usr/local/spark/conf
 #ssh

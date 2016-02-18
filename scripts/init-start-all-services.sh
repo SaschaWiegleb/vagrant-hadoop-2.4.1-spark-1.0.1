@@ -13,10 +13,10 @@ function startHDFS {
 }
 
 function startYarn {
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR'
-	ssh node2 '$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR'
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR
+	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
 	echo "started yarn"
 }
 
@@ -28,8 +28,21 @@ function createEventLogDir {
 
 function startSpark {
 	$SPARK_HOME/sbin/start-all.sh
+	export SPARK_HISTORY_OPTS="-Dspark.history.fs.logDirectory=hdfs://node1:9000/tmp/spark-events"
 	$SPARK_HOME/sbin/start-history-server.sh
 	echo "started spark"
+}
+
+#function changeHdfsPermissions {
+#	hdfs dfs -chmod -R 777 /
+#	hdfs dfs -chown -R swiegleb /
+#	echo "permissions changed"
+#}
+
+function copyHdfsFiles {
+	echo "copy files to HDFS"
+	hadoop fs -copyFromLocal /vagrant/hdfs/* hdfs://node1:9000/
+	hadoop fs -copyFromLocal /usr/local/spark/lib/spark-assembly-1.6.0-hadoop2.6.0.jar hdfs://node1:9000/
 }
 
 formatNameNode
@@ -37,3 +50,5 @@ startHDFS
 startYarn
 createEventLogDir
 startSpark
+copyHdfsFiles
+#changeHdfsPermissions
