@@ -47,4 +47,5 @@
   <name>yarn.timeline-service.hostname</name>
   <value>node1</value>
  </property>
-<!-- </configuration> -->
+<!--spark_shuffle-->
+</configuration>

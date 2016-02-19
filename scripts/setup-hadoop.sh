@@ -24,11 +24,8 @@ function setupHadoop {
 	
 	echo "copying over hadoop configuration files"
 	cp -f $HADOOP_RES_DIR/* $HADOOP_CONF
-
 	if [ "$SPARK_DYNAMIC" = true ]; then 
-		cat $HADOOP_CONF/yarn-site-dynamic.xml >> $HADOOP_CONF/yarn-site.xml; 
-	else 
-		echo "</configuration>" >> $HADOOP_CONF/yarn-site.xml; 
+		sed -i.bak 's/<!--spark_shuffle-->/'"$(sed -e 's/[\&/]/\\&/g' -e 's/$/\\n/' /vagrant/resources/hadoop/yarn-site-dynamic.xml | tr -d '\n')/" $HADOOP_CONF/yarn-site.xml
 	fi
 }
 
