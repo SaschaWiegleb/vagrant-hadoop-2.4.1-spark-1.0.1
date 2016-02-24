@@ -1,10 +1,10 @@
 Vagrant.require_version ">= 1.4.3"
 VAGRANTFILE_API_VERSION = "2"
 IP_SUBNET_ADRESS="192.168.0"
-MEMORY="2048"
+MEMORY="3072"
 CPUS="4"
 #more than 1 node
-NUM_NODES = 2
+NUM_NODES = 3
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	r = NUM_NODES..1

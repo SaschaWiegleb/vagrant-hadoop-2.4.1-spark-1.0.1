@@ -10,9 +10,9 @@ JAVA_VERSION=1.7.0_79
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF=$HADOOP_PREFIX/etc/hadoop
-HADOOP_VERSION=hadoop-2.7.2
+HADOOP_VERSION=hadoop-2.6.4
 HADOOP_ARCHIVE=$HADOOP_VERSION.tar.gz
-HADOOP_MIRROR_DOWNLOAD=https://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/hadoop-2.7.2.tar.gz
+HADOOP_MIRROR_DOWNLOAD=http://apache.openmirror.de/hadoop/common/hadoop-2.6.4/hadoop-2.6.4.tar.gz
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 #spark
 SPARK_VERSION=spark-1.6.0
