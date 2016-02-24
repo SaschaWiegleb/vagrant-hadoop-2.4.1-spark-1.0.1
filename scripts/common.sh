@@ -18,7 +18,7 @@ HADOOP_RES_DIR=/vagrant/resources/hadoop
 SPARK_VERSION=spark-1.6.0
 SPARK_DYNAMIC=false
 SPARK_ARCHIVE=$SPARK_VERSION-bin-hadoop2.6.tgz
-SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dyn/closer.lua/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz
+SPARK_MIRROR_DOWNLOAD=http://apache.openmirror.de/spark/spark-1.6.0/spark-1.6.0-bin-hadoop2.6.tgz
 SPARK_RES_DIR=/vagrant/resources/spark
 SPARK_CONF_DIR=/usr/local/spark/conf
 #ssh
