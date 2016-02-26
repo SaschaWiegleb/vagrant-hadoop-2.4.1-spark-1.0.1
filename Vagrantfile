@@ -16,12 +16,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.vm.define "node#{i}" do |node|
 			node.vm.box = "centos65"
 			node.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
-			node.vm.provider "virtualbox" do |v|
-				v.name = "node#{i}"
-				#http://vl4rl.com/2014/06/04/enabling-mulitcpu-vagrant-machines/
-				v.customize ["modifyvm", :id, "--ioapic", "on"  ]
-    			v.customize ["modifyvm", :id, "--cpus"  , "#{CPUS}"]
-    			v.customize ["modifyvm", :id, "--memory", "#{MEMORY}"]
+			if i == 1
+				node.vm.provider "virtualbox" do |v|
+					v.name = "node#{i}"
+					#http://vl4rl.com/2014/06/04/enabling-mulitcpu-vagrant-machines/
+					v.customize ["modifyvm", :id, "--ioapic", "on"  ]
+	    			v.customize ["modifyvm", :id, "--cpus"  , "2"]
+	    			v.customize ["modifyvm", :id, "--memory", "1024"]
+				end
+			else
+				node.vm.provider "virtualbox" do |v|
+					v.name = "node#{i}"
+					#http://vl4rl.com/2014/06/04/enabling-mulitcpu-vagrant-machines/
+					v.customize ["modifyvm", :id, "--ioapic", "on"  ]
+	    			v.customize ["modifyvm", :id, "--cpus"  , "#{CPUS}"]
+	    			v.customize ["modifyvm", :id, "--memory", "#{MEMORY}"]
+				end
 			end
 			if i < 10
 				node.vm.network :private_network, ip: "#{IP_SUBNET_ADRESS}.10#{i}"
