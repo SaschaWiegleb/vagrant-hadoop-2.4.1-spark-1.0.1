@@ -2,14 +2,16 @@
 source "/vagrant/scripts/common.sh"
 
 function installLocalJava {
-	echo "installing oracle jdk"
+	echo "install oracle jdk from local file"
 	FILE=/vagrant/resources/$JAVA_ARCHIVE
 	tar -xzf $FILE -C /usr/local
 }
 
 function installRemoteJava {
-	echo "install open jdk"
-	yum install -y java-1.7.0-openjdk.x86_64
+	echo "install oracle jdk from remote file"
+	curl -vs -o /vagrant/resources/$JAVA_ARCHIVE -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" $JAVA_MIRROR_DOWNLOAD >/dev/null 2>&1
+	tar -xzf /vagrant/resources/$JAVA_ARCHIVE -C /usr/local
+	#yum install -y java-1.7.0-openjdk.x86_64
 }
 
 function setupJava {

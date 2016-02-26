@@ -5,6 +5,7 @@ IP_SUBNET_ADRESS=192.168.0
 #centOS
 TIMEZONE=Europe/Berlin
 #java
+JAVA_MIRROR_DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
 JAVA_ARCHIVE=jdk-7u79-linux-x64.gz
 JAVA_VERSION=1.7.0_79
 #hadoop

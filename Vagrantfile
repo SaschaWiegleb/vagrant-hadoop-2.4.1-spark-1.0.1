@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 					#http://vl4rl.com/2014/06/04/enabling-mulitcpu-vagrant-machines/
 					v.customize ["modifyvm", :id, "--ioapic", "on"  ]
 	    			v.customize ["modifyvm", :id, "--cpus"  , "2"]
-	    			v.customize ["modifyvm", :id, "--memory", "1024"]
+	    			v.customize ["modifyvm", :id, "--memory", "1536"]
 				end
 			else
 				node.vm.provider "virtualbox" do |v|
